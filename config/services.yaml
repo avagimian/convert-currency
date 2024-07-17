@@ -22,3 +22,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Controller\CurrencyController:
+        arguments:
+            $baseCurrency: "%env(BASE_CURRENCY)%"
+
+    App\Command\FetchCurrencyDataCommand:
+        arguments:
+            $baseCurrency: "%env(BASE_CURRENCY)%"
+
+    App\Services\UseCases\FetchCurrencyRatesUseCase:
+        arguments:
+            $coinpaprikaApiUrl: "%env(COINPAPRIKA_API_URL)%"
+            $floatratesApiUrl: "%env(FLOATRATES_API_URL)%"
+
